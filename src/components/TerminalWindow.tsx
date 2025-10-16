@@ -2,7 +2,6 @@ import { Link, useLocation } from "react-router-dom";
 import { Github, Linkedin } from "./Icons";
 import { profile } from "../data";
 
-type Tab = { label: string; href: string };
 
 const TABS = [
   { label: "home", href: "/" },

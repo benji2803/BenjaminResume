@@ -89,7 +89,7 @@ html { scroll-behavior: smooth; }
 /* Fullscreen variant */
 .terminal-full {
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;
   margin: 0;
   border-radius: 0;
   box-shadow: none;
