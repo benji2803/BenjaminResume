@@ -7,29 +7,6 @@
   </head>
   <body>
     <div id="root"></div>
-
-    <!-- Floating Contact Button (shows on mobile) -->
-    <a href="#contact" class="fab-contact" aria-label="Contact">Contact</a>
-
-    <!-- Smooth scroll for internal links -->
-    <script>
-      const scroller = document.querySelector('.terminal-content');
-      document.querySelectorAll('a[href^="#"]').forEach(a => {
-        a.addEventListener('click', e => {
-          const id = a.getAttribute('href');
-          const target = document.querySelector(id);
-          if (scroller && target && scroller.contains(target)) {
-            e.preventDefault();
-            const headerOffset = 80;
-            const top = target.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop - headerOffset;
-            scroller.scrollTo({ top, behavior: 'smooth' });
-            history.pushState(null, '', id);
-          }
-        });
-      });
-    </script>
-
-    <!-- Your main app -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
