@@ -8,13 +8,13 @@ export const profile = {
   linkedin: "https://www.linkedin.com/in/benjamin-maldonado-043447269/",
   summary:
     "Web developer specializing in building and maintaining scalable, high-traffic web applications with clean,safe, accessible UI. Please feel free to explore my page and ask me any questions! ",
-  skills: ["React", "TypeScript", "Tailwind", "Vite", "Node", "REST", "MO"],
+  skills: ["React", "TypeScript", "Tailwind", "Vite", "Node", "REST", "MongoDB", "AWS Cloud Foundation", "Azure Cloud Foundation", "Java", "Python", "Javascript", "CSS", "Bash Scripting", "Git", "Linux kernel"],
   projects: [
     {
       name: "MissionSecure",
       link: "https://github.com/jxhnaye/MissionSecure",
       desc:
-        "Collaborated on a researched based quiz website on Cybersecurity Ethics & Policies fully integrated with AI grading & Feedback and an automatic info board on the latest tech talk.",
+        "Collaborated on a researched based quiz website on Cybersecurity Ethics & Policies fully integrated with AI grading & Feedback and an automated info board on the latest tech talk.",
       stack: ["React", "TypeScript", "Tailwind", "Vite"],
     },
     {
