@@ -44,7 +44,11 @@ html { scroll-behavior: smooth; }
   display: flex;
   align-items: center;
   gap: 0.5rem;
+  /* allow the nav (a flex child) to actually overflow/scroll */
+  overflow: hidden;
 }
+
+/* Title + controls */
 .terminal-title { color: #eee; font-size: 0.9em; }
 .terminal-controls { display: flex; gap: 0.4em; margin-left: 0.4em; }
 .control { display: inline-block; width: 0.6em; height: 0.6em; border-radius: 50%; background-color: #777; }
@@ -52,13 +56,24 @@ html { scroll-behavior: smooth; }
 .control.minimize { background-color: #ee0; }
 .control.maximize { background-color: #0b0; }
 
-/* Tabs (command-style) */
+/* Tabs (command-style) — MAKE THIS SWIPE SCROLLABLE */
 .terminal-nav {
   margin-left: auto;            /* push tabs to the right */
   display: flex;
-  gap: 0.5rem;
   align-items: center;
+  gap: 0.5rem;
+
+  /* horizontal scrolling on mobile */
+  flex-wrap: nowrap;
+  min-width: 0;                 /* critical for flex children to overflow */
+  overflow-x: auto;
+  overflow-y: hidden;
+  -webkit-overflow-scrolling: touch;
+  touch-action: pan-x;
+  scrollbar-width: none;        /* Firefox hide */
 }
+.terminal-nav::-webkit-scrollbar { display: none; }  /* WebKit hide */
+
 .tab {
   color: #a7f3d0;
   background: transparent;
@@ -69,6 +84,12 @@ html { scroll-behavior: smooth; }
   font-size: 0.85em;
   text-decoration: none;
   opacity: 0.85;
+
+  /* keep each tab on one line and prevent shrinking */
+  display: inline-flex;
+  align-items: center;
+  white-space: nowrap;
+  flex: 0 0 auto;
 }
 .tab:hover { opacity: 1; }
 .tab.active {
@@ -80,16 +101,17 @@ html { scroll-behavior: smooth; }
 /* Content area (scrolls if needed) */
 .terminal-content {
   position: absolute;
-  top: 1.8em; /* header height */
+  top: 1.8em;           /* header height */
   left: 0; right: 0; bottom: 0;
-  overflow: auto;
+  overflow-y: auto;     /* the inner scroller */
+  -webkit-overflow-scrolling: touch;
   padding: 1rem;
 }
 
 /* Fullscreen variant */
 .terminal-full {
   width: 100vw;
-  height: 100vh;
+  height: 100dvh;       /* mobile-safe */
   margin: 0;
   border-radius: 0;
   box-shadow: none;
