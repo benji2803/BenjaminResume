@@ -1,68 +1,144 @@
-:root {
-  font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+/* Tailwind base */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
+/* ========== Minimal reset & page bg ========== */
+* { padding: 0; margin: 0; box-sizing: border-box; }
+html, body { height: 100%; background: #e8e8e8; }
+html { scroll-behavior: smooth; }
 
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+/* ========== Animations ========== */
+@keyframes blinkCursor { 50% { border-right-color: transparent; } }
+/* Use --ch to fit any phrase length; falls back to 10em */
+@keyframes typeAndDelete {
+  0%, 10% { width: 0; }
+  45%, 55% { width: var(--ch, 10em); }
+  90%, 100% { width: 0; }
 }
 
-a {
-  font-weight: 500;
-  color: #646cff;
-  text-decoration: inherit;
-}
-a:hover {
-  color: #535bf2;
-}
-
-body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
-}
-
-h1 {
-  font-size: 3.2em;
-  line-height: 1.1;
-}
-
-button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
-  font-weight: 500;
-  font-family: inherit;
+/* ========== Terminal window styles ========== */
+.terminal-loader {
+  border: 0.1em solid #333;
   background-color: #1a1a1a;
-  cursor: pointer;
-  transition: border-color 0.25s;
-}
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+  color: #0f0;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 1em;
+  padding: 1.5em 1em;
+  width: 12em;                 /* default compact width (fullscreen overrides) */
+  margin: 100px auto;
+  box-shadow: 0 4px 8px rgba(0,0,0,0.2);
+  border-radius: 4px;
+  position: relative;
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+/* Header: flex so we can add tabs */
+.terminal-header {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 1.8em;
+  background-color: #333;
+  padding: 0 0.5em;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.terminal-title { color: #eee; font-size: 0.9em; }
+.terminal-controls { display: flex; gap: 0.4em; margin-left: 0.4em; }
+.control { display: inline-block; width: 0.6em; height: 0.6em; border-radius: 50%; background-color: #777; }
+.control.close { background-color: #e33; }
+.control.minimize { background-color: #ee0; }
+.control.maximize { background-color: #0b0; }
+
+/* Tabs (command-style) */
+.terminal-nav {
+  margin-left: auto;            /* push tabs to the right */
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}
+.tab {
+  color: #a7f3d0;
+  background: transparent;
+  border: 1px solid rgba(16,185,129,0.35);
+  border-radius: 4px;
+  padding: 0.1rem 0.5rem;
+  font-family: "Courier New", Courier, monospace;
+  font-size: 0.85em;
+  text-decoration: none;
+  opacity: 0.85;
+}
+.tab:hover { opacity: 1; }
+.tab.active {
+  color: #0f0;
+  border-color: #34d399;
+  background: rgba(16,185,129,0.08);
+}
+
+/* Content area (scrolls if needed) */
+.terminal-content {
+  position: absolute;
+  top: 1.8em; /* header height */
+  left: 0; right: 0; bottom: 0;
+  overflow: auto;
+  padding: 1rem;
+}
+
+/* Fullscreen variant */
+.terminal-full {
+  width: 100vw;
+  height: 100vh;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+/* Sections */
+.section { padding: 1rem 0; border-top: 1px solid rgba(16,185,129,0.15); }
+.section:first-child { border-top: none; padding-top: 0; }
+
+/* Optional: scrollbar styling inside terminal */
+.terminal-content::-webkit-scrollbar { width: 10px; }
+.terminal-content::-webkit-scrollbar-thumb { background: rgba(16,185,129,0.25); border-radius: 8px; }
+
+/* ========== Typing line helpers ========== */
+.type-row {
+  display: grid;
+  grid-template-columns: auto auto 1fr;
+  gap: 0.5rem;
+  align-items: baseline;
+}
+
+.text {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  border-right: 0.2em solid #0f0;
+  animation:
+    typeAndDelete 4s steps(11) infinite,
+    blinkCursor 0.5s step-end infinite alternate;
+  margin-top: 0.2em;
+}
+.text.small { opacity: 0.9; font-size: 0.9em; margin-left: 0.25rem; }
+.prompt { color: #34d399; }
+.cmd { color: #a7f3d0; }
+/* Typewriter + blinking caret */
+.typewriter {
+  display: inline-block;
+  white-space: nowrap;
+  overflow: hidden;
+  font-family: "Courier New", Courier, monospace;
+  color: #0f0;
+}
+
+.caret {
+  display: inline-block;
+  width: 0.12em;
+  height: 1em;
+  margin-left: 0.1em;
+  background: #0f0;
+  vertical-align: -0.15em;
+  animation: blinkCursor 0.7s step-end infinite alternate;
 }

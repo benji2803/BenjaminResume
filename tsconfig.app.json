@@ -24,5 +24,5 @@
     "noFallthroughCasesInSwitch": true,
     "noUncheckedSideEffectImports": true
   },
-  "include": ["src", "personal_resume_website_react_tailwind_starter.jsx"]
+  "include": ["src", "src/personal_resume_website_react_tailwind_starter.jsx"]
 }
