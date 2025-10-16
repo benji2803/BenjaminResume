@@ -1,34 +1,35 @@
-<!-- Floating Contact Button (shows on mobile) -->
-<a href="#contact" class="fab-contact" aria-label="Contact">Contact</a>
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AboutBen</title>
+  </head>
+  <body>
+    <div id="root"></div>
 
-<!-- Smooth scroll for sections INSIDE .terminal-content -->
-<script>
-  window.addEventListener("DOMContentLoaded", () => {
-    const scroller = document.querySelector(".terminal-content");
-    const links = document.querySelectorAll('a[href^="#"]');
+    <!-- Floating Contact Button (shows on mobile) -->
+    <a href="#contact" class="fab-contact" aria-label="Contact">Contact</a>
 
-    links.forEach(link => {
-      link.addEventListener("click", e => {
-        const id = link.getAttribute("href");
-        const target = document.querySelector(id);
-        if (scroller && target && scroller.contains(target)) {
-          e.preventDefault();
-          const headerOffset = 80; // match scroll-margin-top if you change it
-          const top =
-            target.getBoundingClientRect().top -
-            scroller.getBoundingClientRect().top +
-            scroller.scrollTop -
-            headerOffset;
-          scroller.scrollTo({ top, behavior: "smooth" });
-          history.pushState(null, "", id);
-        }
+    <!-- Smooth scroll for internal links -->
+    <script>
+      const scroller = document.querySelector('.terminal-content');
+      document.querySelectorAll('a[href^="#"]').forEach(a => {
+        a.addEventListener('click', e => {
+          const id = a.getAttribute('href');
+          const target = document.querySelector(id);
+          if (scroller && target && scroller.contains(target)) {
+            e.preventDefault();
+            const headerOffset = 80;
+            const top = target.getBoundingClientRect().top - scroller.getBoundingClientRect().top + scroller.scrollTop - headerOffset;
+            scroller.scrollTo({ top, behavior: 'smooth' });
+            history.pushState(null, '', id);
+          }
+        });
       });
-    });
+    </script>
 
-    if (scroller) {
-      scroller.style.webkitOverflowScrolling = "touch";
-      scroller.style.overflowY = "auto";
-      scroller.style.height = "100dvh";
-    }
-  });
-</script>
+    <!-- Your main app -->
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>

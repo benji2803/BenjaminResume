@@ -14,7 +14,7 @@ export default function Home() {
         initial={{ opacity: 0, y: 40 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8 }}
-        className=" flex flex-col justify-center items-center gap-3 text-emerald-200"
+        className="h-full flex flex-col justify-center items-center gap-3 text-emerald-200"
       >
         {/* $ whoami */}
         <div>

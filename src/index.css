@@ -1,41 +1,23 @@
-/* =========================
-   Tailwind base
-========================= */
+/* Tailwind base */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* =========================
-   Minimal reset + page defaults
-========================= */
-* { margin: 0; padding: 0; box-sizing: border-box; }
-
+/* ========== Minimal reset & page bg ========== */
+* { padding: 0; margin: 0; box-sizing: border-box; }
+html, body { height: 100%; background: #e8e8e8; }
 html { scroll-behavior: smooth; }
 
-html, body { height: 100%; background: #e8e8e8; }
-
-body {
-  min-height: 100dvh;               /* mobile-safe full height */
-  overflow-y: auto;                  /* ensure page can scroll */
-  overflow-x: hidden;                /* no sideways scroll on mobile */
-}
-
-/* If you have a fixed/sticky header, anchors won't hide underneath it */
-section, [id] { scroll-margin-top: 80px; }  /* tweak 80px to your header height */
-
-/* =========================
-   Animations (typewriter)
-========================= */
+/* ========== Animations ========== */
 @keyframes blinkCursor { 50% { border-right-color: transparent; } }
+/* Use --ch to fit any phrase length; falls back to 10em */
 @keyframes typeAndDelete {
   0%, 10% { width: 0; }
   45%, 55% { width: var(--ch, 10em); }
   90%, 100% { width: 0; }
 }
 
-/* =========================
-   Terminal window styles
-========================= */
+/* ========== Terminal window styles ========== */
 .terminal-loader {
   border: 0.1em solid #333;
   background-color: #1a1a1a;
@@ -43,15 +25,16 @@ section, [id] { scroll-margin-top: 80px; }  /* tweak 80px to your header height 
   font-family: "Courier New", Courier, monospace;
   font-size: 1em;
   padding: 1.5em 1em;
-  width: 12em;                      /* default compact width (fullscreen overrides) */
+  width: 12em;                 /* default compact width (fullscreen overrides) */
   margin: 100px auto;
   box-shadow: 0 4px 8px rgba(0,0,0,0.2);
   border-radius: 4px;
   position: relative;
-  overflow: hidden;                  /* header + content are inside */
+  overflow: hidden;
+  box-sizing: border-box;
 }
 
-/* Header bar */
+/* Header: flex so we can add tabs */
 .terminal-header {
   position: absolute;
   top: 0; left: 0; right: 0;
@@ -69,9 +52,9 @@ section, [id] { scroll-margin-top: 80px; }  /* tweak 80px to your header height 
 .control.minimize { background-color: #ee0; }
 .control.maximize { background-color: #0b0; }
 
-/* Command-style tabs (right side of header) */
+/* Tabs (command-style) */
 .terminal-nav {
-  margin-left: auto;
+  margin-left: auto;            /* push tabs to the right */
   display: flex;
   gap: 0.5rem;
   align-items: center;
@@ -94,42 +77,40 @@ section, [id] { scroll-margin-top: 80px; }  /* tweak 80px to your header height 
   background: rgba(16,185,129,0.08);
 }
 
-/* Scrollable content area (inner scroller) */
+/* Content area (scrolls if needed) */
 .terminal-content {
   position: absolute;
-  top: 1.8em;                        /* header height */
+  top: 1.8em; /* header height */
   left: 0; right: 0; bottom: 0;
-  overflow-y: auto;                  /* scrolls inside terminal */
+  overflow: auto;
   padding: 1rem;
-  -webkit-overflow-scrolling: touch; /* momentum on iOS */
 }
 
-/* Fullscreen variant (mobile-safe height) */
+/* Fullscreen variant */
 .terminal-full {
   width: 100vw;
-  height: 100dvh;                    /* use dynamic viewport units */
+  height: 100dvh;
   margin: 0;
   border-radius: 0;
   box-shadow: none;
 }
 
-/* Sections inside the terminal */
+/* Sections */
 .section { padding: 1rem 0; border-top: 1px solid rgba(16,185,129,0.15); }
 .section:first-child { border-top: none; padding-top: 0; }
 
-/* Optional: custom scrollbar inside terminal */
+/* Optional: scrollbar styling inside terminal */
 .terminal-content::-webkit-scrollbar { width: 10px; }
 .terminal-content::-webkit-scrollbar-thumb { background: rgba(16,185,129,0.25); border-radius: 8px; }
 
-/* =========================
-   Typing line helpers
-========================= */
+/* ========== Typing line helpers ========== */
 .type-row {
   display: grid;
   grid-template-columns: auto auto 1fr;
   gap: 0.5rem;
   align-items: baseline;
 }
+
 .text {
   display: inline-block;
   white-space: nowrap;
@@ -143,6 +124,7 @@ section, [id] { scroll-margin-top: 80px; }  /* tweak 80px to your header height 
 .text.small { opacity: 0.9; font-size: 0.9em; margin-left: 0.25rem; }
 .prompt { color: #34d399; }
 .cmd { color: #a7f3d0; }
+/* Typewriter + blinking caret */
 .typewriter {
   display: inline-block;
   white-space: nowrap;
@@ -150,6 +132,7 @@ section, [id] { scroll-margin-top: 80px; }  /* tweak 80px to your header height 
   font-family: "Courier New", Courier, monospace;
   color: #0f0;
 }
+
 .caret {
   display: inline-block;
   width: 0.12em;
@@ -159,31 +142,3 @@ section, [id] { scroll-margin-top: 80px; }  /* tweak 80px to your header height 
   vertical-align: -0.15em;
   animation: blinkCursor 0.7s step-end infinite alternate;
 }
-
-/* =========================
-   Mobile "Contact" FAB (optional)
-========================= */
-.fab-contact {
-  position: fixed;
-  right: 16px;
-  bottom: 16px;
-  z-index: 1000;
-  display: none;                     /* hidden on desktop */
-  padding: 12px 16px;
-  border-radius: 9999px;
-  background: #111;
-  color: #fff;
-  text-decoration: none;
-  font-weight: 600;
-  box-shadow: 0 8px 20px rgba(0,0,0,.25);
-}
-.fab-contact:active { transform: translateY(1px); }
-@media (max-width: 640px) {
-  .fab-contact { display: inline-block; }
-}
-
-/* =========================
-   Utility helpers (optional)
-========================= */
-.scrollable { -webkit-overflow-scrolling: touch; }
-.fullscreen, .wrapper, .app { min-height: 100dvh; }
