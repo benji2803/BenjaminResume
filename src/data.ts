@@ -12,9 +12,9 @@ export const profile = {
   projects: [
     {
       name: "MissionSecure",
-      link: "https://github.com/jxhnaye/MissionSecure",
+      link: "https://mission-secure.vercel.app/",
       desc:
-        "Collaborated on a researched based quiz website on Cybersecurity Ethics & Policies fully integrated with AI grading & Feedback and an automated info board on the latest tech talk.",
+        "Collaborated on a researched based quiz website on Cybersecurity Ethics & Policies fully integrated with AI grading & Feedback and an automated info board on the latest tech talk. Was aassigned Frontend design & Security and ensured smooth, safe and user friendly design.",
       stack: ["React", "TypeScript", "Tailwind", "Vite"],
     },
     {
