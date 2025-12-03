@@ -18,6 +18,13 @@ export const profile = {
       stack: ["React", "TypeScript", "Tailwind", "Vite"],
     },
     {
+      name: "AI chatbot",
+      link: "https://example.com",
+      desc:
+        "Coming Soon",
+      stack: ["Coming Soon"],
+    },
+    {
       name: "Coming Soon",
       link: "https://example.com",
       desc:
