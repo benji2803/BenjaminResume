@@ -1,3 +1,5 @@
+With the help of boilerplate templates making a website has never been faster! Using modern day tech to not only make creating a site easy but easy to use as well has never been easier. Applying my knowlege into this helped create sometehing personal and totally under my control.
+
 # React + TypeScript + Vite
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
