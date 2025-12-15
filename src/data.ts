@@ -20,7 +20,7 @@ export const profile = {
     {
       name: "AI chatbot",
       link: "https://example.com",
-      desc:
+      desc: "Using command line tools and python, I personalized and deployed an AI chatbot that can answer questions I have offline without the use of modern web based AI tools. Becoming more dependent on the own data I collect and store locally.",
         "Coming Soon",
       stack: ["Coming Soon"],
     },
