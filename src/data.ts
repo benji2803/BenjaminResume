@@ -25,10 +25,10 @@ export const profile = {
       stack: ["Coming Soon"],
     },
     {
-      name: "Coming Soon",
+      name: "Virtual Machine hosting",
       link: "https://example.com",
       desc:
-        "Coming Soon",
+        "This project was intended to practice and create sandbox enviroments and virtualize whole networks. This practice paired with CISCO mapping helped put into perspective the delicacies and challenges that IT professionals must overcome to create reliable networks for client buildings. I have simulated a 20 person Company with 10 mobile stations that are paired with windows 10 and are all ran through a router configured with windows server",
       stack: ["Coming Soon"],
     },
   ],
@@ -49,6 +49,15 @@ export const profile = {
       bullets: [
         "Networked and collaborated with many talented tech professionals to gain insights into cybersecurity practices and industry trends. Assigned to work on a project to create a secure web application using a React stack with a focus on frontend security.",
         "Created a safe frontend to backend connection for secure user data transmission containing sensitive information. Created a smoooth and accessible UI for users to easily navigate and interact with the web application.",
+      ],
+    },
+    {
+      company: "Branford Quality Finishing",
+      title: "IT assistant/Secretary",
+      dates: "Jan 2016 – Sep 2022",
+      bullets: [
+        "Handled basic office and helpdesk task for a warehouse group of 10 employees such as printer server fixes, Computer wipes, Active directory, Onboarding & Offboarding process, legacy machine upkeeping",
+        "More advanced server work with a network of timer based industrial ovens, Surveilence Camera server upkeep and logging, Excel sheet documenting, In house invoicing program upkeep",
       ],
     },
   ],
