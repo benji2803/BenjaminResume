@@ -45,10 +45,11 @@ export const profile = {
     {
       company: "LA Tech ",
       title: "Cybersecurity Intern",
-      dates: "2025 – Present",
+      dates: "August 2025 – December 2025",
       bullets: [
         "Networked and collaborated with many talented tech professionals to gain insights into cybersecurity practices and industry trends. Assigned to work on a project to create a secure web application using a React stack with a focus on frontend security.",
         "Created a safe frontend to backend connection for secure user data transmission containing sensitive information. Created a smoooth and accessible UI for users to easily navigate and interact with the web application.",
+        "Worked with waymonauts from Waymo to help create an imitation launch of a waymo fleet to a city that could be of use of these AV's. Strategically planned with a group of interns as I was given the task to help create technical fail safes for certain scenarios that could happen in the city.",
       ],
     },
     {
